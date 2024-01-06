@@ -1,0 +1,21 @@
+com.bitdefender\.?.*
+com.android\.?.*
+com.snapchat.android\.?.*
+com.google.android\.?.*
+com.signal\.?.*
+com.telegram\.?.*
+com.huawei\.?.*
+com.amazon\.?.*
+com.ifttt\.?.*
+com.whatsapp\.?.*
+okhttp\/?.*
+network-okhttp\/?.*
+BDNC \v?.*
+Dalvik\/?.*
+AivAndroidPlayer\/?.*
+TuneIn Radio\-?.*
+UnityPlayer\/?.*
+GameAnalytics ?.*
+CronetSnapDevSheldon\/?.*
+AivAndroidPlayer\/?.*
+FreeTube\/?.*
