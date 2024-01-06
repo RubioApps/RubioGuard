@@ -154,7 +154,7 @@ In this repository, I provide the following rules:
 - pool.acl : list of domains that could flood your network but with low priority (windowsupdate or metrics)
 - tor.acl : list of domains that you want to drive through TOR (not bumped and not cached, but 'torified')
 
-Now, you can copy and paste the content of the squid.conf at /etc/squid/
+Now, you can copy and paste the content of the [squid.conf](https://github.com/RubioApps/RubioGuard/blob/main/squid/squid.conf) at /etc/squid/
 
 Please refer to more info into the /docs folder
 
