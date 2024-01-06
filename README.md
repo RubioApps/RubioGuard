@@ -10,6 +10,10 @@ This configuration CAN ONLY be used for personnal purposes in a domestic network
 .The use of a Man-in-the-middle might be illegal in some countries
 .I decline any responsibility about the use of the following configuration and about any vulnerability devired from the third party software suggested in this tutorial
 
+Once everything is setup, you could use the Squid Proxy by:
+- Adding the EasyRSA certificate to your internet browser (chrome, Firefox, Brave, etc..)
+- Setting your browser or PC to use **http://<your_ip_server>:3128** as the unique proxy address
+
 ## Requirements
 
 This is the list of needed software to build up the complete setup:
