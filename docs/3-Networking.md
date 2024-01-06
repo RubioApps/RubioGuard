@@ -99,7 +99,7 @@ Then Squid will not avoid the connection, but the browser does.
 As this option is too much restrictive, I do prefer to comment it out.
 
 
-#  TLS OPTIONS : Custom config SSL-MITM mode
+### TLS OPTIONS : Custom config SSL-MITM mode
 
 ```
 tls_outgoing_options capath=/etc/ssl/certs
