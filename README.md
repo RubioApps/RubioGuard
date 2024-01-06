@@ -41,8 +41,16 @@ wget http://www.squid-cache.org/Versions/v5/squid-5.7.tar.gz
 tar -xvf squid-5.7.tar.gz
 cd squid-5.7
 ```
-Now download the install-squid.sh script from this repository or create it with the code detailed here below:
-<details>
+
+Now create a bash script (for install named install-squid.sh) 
+
+```
+nano install-squid.sh
+```
+
+And paste the following content:
+
+```
 #!/bin/bash
  
 ./configure --prefix=/usr \
@@ -99,9 +107,9 @@ Now download the install-squid.sh script from this repository or create it with 
 
 make 
 make install  
-</details>
+```
 
-Now, run the script:
+Save it and run the script:
 
 ```
 sudo bash ./install-squid.sh
@@ -122,7 +130,9 @@ You have to create the following subfolders at /etc/squid
 - acl
 
 **The folder 'ssl'** will contain the Self-signed Certificates, needed to run Squid with the capability to decrypt, cache and re-encrypt the traffic (man-in-the-middle)
+
 To know further about how to create Self-Signed certificates with EasyRSA, please [visit the ArchiLinux page](https://wiki.archlinux.org/title/Easy-RSA)
+
 At the end you will need 2 files:
 
 - A certificate (.crt)
