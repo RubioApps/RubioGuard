@@ -1,0 +1,18 @@
+Log notice file /var/log/tor/notice.log
+
+SOCKSPort 9050
+SOCKSPolicy accept 127.0.0.1
+SocksPolicy accept 192.168.1.0/24
+
+RunAsDaemon 1
+ControlPort 9051
+HashedControlPassword {{YOUR_HASHED_PASSWORD}}
+CookieAuthentication 0
+
+ExitPolicy accept *:*
+
+ExcludeExitNodes {ab},{cd},{ef}
+ExcludeNodes {pp},{qq},{rr}
+ExitNodes {xx},{yy},{zz}
+StrictNodes 1
+
