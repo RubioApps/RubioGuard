@@ -25,7 +25,7 @@ or
 - Any indiviual device is configured to use it: (recommended)
 Setup your internet browser or your PC to use this proxy. You only have to setup the proxy to point to 
 
-http://<your_ip_server>:3128
+> http://<your_ip_server>:3128
 
 and redirect all the traffic to it.
 
