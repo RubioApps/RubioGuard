@@ -142,7 +142,12 @@ acl CERT_ERR ssl_error X509_V_ERR_CERT_REVOKED
 
 ```
 
-# HTTP Access
+## HTTP Access
+
+In this list, the order is mandatory to not to block the traffc. In fact, we authorize the own server and the domestic LAN.
+If it is confirmed, we only allow safe and secured ports with good certificates, and we reject the rest.
+
+```
 http_access allow localhost
 http_access allow manager localhost
 http_access deny manager
@@ -155,11 +160,17 @@ http_access deny CERT_ERR
 http_access deny INTERMEDIATE_FETCH
 http_access allow AUTHENTICATED
 http_access deny all
+```
 
-# ICP Access
+## ICP Access
+
+This is used to connect to other proxies. We do not want to, so I deny it except for the own server.
+
+```
 icp_access allow localhost
 icp_access deny all
 
 # HTCP Access
 htcp_access allow localhost
 htcp_access deny all
+```
