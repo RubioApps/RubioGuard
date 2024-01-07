@@ -1,35 +1,37 @@
 # RubioGuard
-Advanced Squid Proxy Cache with a redirect of the traffic to TOR
+This is an advanced configuration of Squid Proxy Cache with a redirect of the traffic to TOR
 
 ## Purpose
 
 This is a tutorial to explain how to build a complex configuration for a Squid Proxy Server that includes an optional redirect of the traffic to Privoxy and TOR
 This configuration CAN ONLY be used for personnal purposes in a domestic network, never a public one.
 
-###**IMPORTANT NOTICE:**
-.The use of a Man-in-the-middle might be illegal in some countries
-.I decline any responsibility about the use of the following configuration and about any vulnerability devired from the third party software suggested in this tutorial
+### **IMPORTANT NOTICE:**
 
-Once everything is setup, you could use the Squid Proxy by:
-- Adding the EasyRSA certificate to your internet browser (chrome, Firefox, Brave, etc..)
-- Setting your browser or PC to use **http://<your_ip_server>:3128** as the unique proxy address
+- The use of a Man-in-the-middle might be illegal in some countries
+- I decline any responsibility about the use of the following configuration and about any vulnerability provoked by a third party software suggested in this tutorial.
+
+Once the setup is complete, you can use the Squid Proxy by:
+
+- Adding the EasyRSA self-signed certificate to your internet browser (chrome, Firefox, Brave, etc..)
+- Setting your browser or PC to use **http://<your_ip_server>:3128** as the unique proxy address for all protocols.
 
 ## Requirements
-
-This is the list of needed software to build up the complete setup:
 
 - Ubuntu Server 22.04 LTS Linux Operating System
 - Squid Proxy Cache 5.7 or higher. More info at [Squid PRoxy](http://www.squid-cache.org/)
 - Privoxy filtering content Server. More info at [Privoxy](https://www.privoxy.org/)
 - TOR. More info at [TOR](https://packages.ubuntu.com/jammy/tor)
-- C-ICAP Server. More info at [C-ICAP](https://c-icap.sourceforge.net/)
-- EasyRSA. More info at [OpenVPN](https://github.com/OpenVPN/easy-rsa)
+- C-ICAP Server. More info at [C-ICAP](https://c-icap.sourceforge.net/) 
 
-If you decide to disable any option across the following tutorial, you could not use the related service or server, and its installation would be not mandatory.
+
+You can decide to disable an optional component across the following tutorial. 
+
 
 ## Installation
 
-To run the suggested configuration of the Squid proxy, you would need to compile it from the source.
+To run the provided configuration of the Squid Proxy Server (squid.conf), **you have to compile it from the source**.
+
 You can get the source from [here](http://www.squid-cache.org/Versions/v5/squid-5.7.tar.gz)
 
 You'll need **cmake** to compile the sources. Please do not forget to install it
@@ -46,13 +48,13 @@ tar -xvf squid-5.7.tar.gz
 cd squid-5.7
 ```
 
-Now create a bash script (for install named install-squid.sh) 
+Now create a bash script (for instance named *install-squid.sh*) 
 
 ```
 nano install-squid.sh
 ```
 
-And paste the following content:
+Copy and paste the following content:
 
 ```
 #!/bin/bash
@@ -120,9 +122,11 @@ sudo bash ./install-squid.sh
 ```
 
 This operation will take several minutes, depending on your machine.
+
 Once Squid Proxy Cache is installed, you will found the working directory **/etc/squid**
 
-In addition to the Squid Proxy Server code, you would need to install the additional package for the Languages/
+In addition to the Squid Proxy Server code, you would need to install the additional package for the Languages:
+
 ```
 apt install squid-lang
 ```
@@ -133,16 +137,15 @@ You have to create the following subfolders at /etc/squid
 - ssl
 - acl
 
-**The folder 'ssl'** will contain the Self-signed Certificates, needed to run Squid with the capability to decrypt, cache and re-encrypt the traffic (man-in-the-middle)
-
-To know further about how to create Self-Signed certificates with EasyRSA, please [visit the ArchiLinux page](https://wiki.archlinux.org/title/Easy-RSA)
+**The folder 'ssl'** will contain the Self-signed Certificates, mandatory to run Squid with the capability to decrypt, cache and re-encrypt the traffic (man-in-the-middle).
 
 At the end you will need 2 files:
 
 - A certificate (.crt)
 - A private key (.key)
 
-**The folder 'acl'** will contain the rules that will allow to redirect the traffic depending on the domain you want to connect to
+**The folder 'acl'** will contain the rules that allow to redirect the traffic depending on the domain you want to connect to.
+
 In this repository, I provide the following rules:
 
 - bump: (sub-folder)
@@ -160,7 +163,22 @@ In this repository, I provide the following rules:
 
 Now, you can copy and paste the content of the [squid.conf](https://github.com/RubioApps/RubioGuard/blob/main/squid/squid.conf) at /etc/squid/
 
-Please refer to more info into the /docs folder
+Please refer to more info into the [/docs](https://github.com/RubioApps/RubioGuard/tree/main/docs) folder.
+
+## Legal
+
+This repository simply contains the needed configuration for Squid, Privoxy and Tor. 
+The use of it,user-submitted links to publicly available video stream URLs, which to the best of our knowledge have been intentionally made publicly by the copyright holders. If any links in these playlists infringe on your rights as a copyright holder, they may be removed by sending a [pull request](https://github.com/RubioApps/RubioGuard/pulls) or opening an [issue](https://github.com//RubioApps/RubioGuard/issues/new?assignees=freearhey&labels=removal+request&template=--removal-request.yml&title=Remove%3A+). 
+
+However, note that we have **no control** over the destination of the link, and just removing the link from the playlist will not remove its contents from the web. Note that linking does not directly infringe copyright because no copy is made on the site providing the link, and thus this is **not** a valid reason to send a DMCA notice to GitHub. To remove this content from the web, you should contact the web host that's actually hosting the content (**not** GitHub, nor the maintainers of this repository).
+
+## License
+
+GNU GENERAL PUBLIC LICENSE
+
+Version 3, 29 June 2007
+
+Copyright (C) 2007 Free Software Foundation, Inc.
 
 
 

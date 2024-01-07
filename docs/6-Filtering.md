@@ -1,23 +1,23 @@
 # Filtering
 
-If you have followed the previous steps, you know that know we have defined the domains we want to bump, the pools and the refresh policy.
+If you have followed the previous steps, you know that we have now defined the domains we want to bump, the pools, the size of the memory and the refresh policy.
 
-But, what about a filter? What if we want to avoid websites about gambling or sects?
+But, **what about a filter?** What if we want to ban the access to the websites about gambling or sects from home?
 
-Here Squid can act as a filter of the content you receive into your browser.
+Here, Squid Proxy can be configured to work together with other mechanisms and provide a good filter of the content you receive into your browser.
 
-There is several method, some simples, some complex.
+There is several methods to proceed, some are simple, some are complex.
 
-## URL Rewriting
+## URL Rewriting (optional)
 
-When you point to a website that might be forbidden for your family, I use 3 methods to rewrite the URL
+When you point to a website that might be forbidden for my family, I use 3 methods to rewrite the URL
 
-**a. Method 1:** Use NextDNS filter https://my.nextdns.io . This is my case
+__Method 1__: Use NextDNS filter https://my.nextdns.io . This is my case, by I pay for it to customize it.
 
-**b. Method 2:** Use SquidGuard to filter
+__Method 2__: Use SquidGuard to filter
 
 This method is very slow, based on Berkely databases with a very obsolete list of banned websites.
-I installed for a while, but it does not work properly for HTTPS.
+I installed for a while, but it does not work properly for HTTPS (it only filters plain text from non-secured HTTP)
 
 You can read further [here](https://en.wikipedia.org/wiki/SquidGuard).
 
@@ -29,18 +29,24 @@ url_rewrite_children 5 startup=1 idle=1
 url_rewrite_access allow BROWSERS
 url_rewrite_access deny all
 ```
-**c. Method 3:** Use service of ICAP Server to filter
 
-I use this method in addition to the Method 1 (NextDNS) because it allow to scan ALL THE TRAFFIC with the very efficient Antivirus ClamAV for Linux distros.
+__Method 3__: Use service of ICAP Server to filter
 
-This means that I do not need to have an Antivirus on each PC Client, but a centralized one running on the Squid Server.
+I use this method in addition to the Method 1 (NextDNS) because it allows to scan ALL THE TRAFFIC with the very efficient Antivirus ClamAV for Linux distros.
 
-I proceed by using 2 services: 
+This means that I do not need to have an Antivirus installed on each PC Client, but a centralized one running on the Squid Server would be enough.
+
+__NOTE__: 
+
+To run ClamAV as a background service has a very high cost in terms of memory. It consumes roughtly 1GB.
+Therefore, it depends on your installed RAM Memory. 
+
+To use the Method 3 (Scan all the traffic), I proceed by using 2 combined services: 
 
 - [SquidClamav](https://squidclamav.darold.net/)
 - [C-ICAP Server](https://squidclamav.darold.net/)
 
-Please read the installation of both services at their websites.
+Please read the installation of both services at their websites. In the case of C-ICAP I have compiled it from the scratch.
 Once you have setup both, you can bridge them to Squid by adding the following lines to the squid.conf
 
 ```

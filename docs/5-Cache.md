@@ -1,7 +1,7 @@
 # Cache
 
-In Squid, the fastest way to access to the cache is when it is stored in the memory.
-When Squid is using the disk storage mode, it's slower than storing the objects in the memory, but you can store more if you are short of memory (12GB in my case).
+Squid Proxy Server uses the memomry as the fastest way to access to the stored objects.
+When Squid is using the disk storage mode, it is slower but you can store bigger objects.
 
 Let's tune it! 
 
@@ -24,25 +24,32 @@ And this for the disk:
 
 ```
 cache_replacement_policy heap LFUDA
-#cache_dir aufs /var/cache/squid 2048 16 256
-#minimum_object_size 0
+cache_dir aufs /var/cache/squid 2048 16 256
+minimum_object_size 0
 maximum_object_size 512 KB
 ```
 
-This can change depending on the machine where you run the Squid Proxy Server. 
+This can be modified depending on the machine where you run the Squid Proxy Server. 
 The suggested values work fine for me.
 
 
 ## Pools
 
-Some services running on the PC clients can use a big portion of the bandwidth at home. Therefore, some traffic related to Windows update, Antivirus updates, etc. can be put in a pool. 
+Some services like Windows Update, Metrics or the Antivirus running on the PC clients can use a big portion of the bandwidth at home. 
+Therefore, it is interesting to drive that traffic through a pool with a restricted timeslot.
 
-If we se tthe size of that pool, we ensure that traffic will never go higher than the size of the pool.
-This will allow the other connections to work properly.
+If we set the size of that pool, we ensure that the local traffic will never be impacted by the mentioned services.
+Then, the other connections will work properly when needed.
+
+This is practical if you have a lot of devices connected to Internet and your ISP does not provide a large bandwidth.
 
 Let's tune the pool for the following ACLs: 
-- POOL_UPDATE: I put all the domains like windowsupdate
-- PEAK_PERIOD: This is a rule that says in which period of the day I allow the pool to work. Usually, at night.
+
+__POOL_UPDATE__: I put all the domains like windowsupdate.com
+
+__PEAK_PERIOD__: This is a rule that says in which period of the day I allow the pool to work. Usually, at night.
+
+Please check the Chapter [2-Protection](https://github.com/RubioApps/RubioGuard/blob/main/docs/2-Protection.md) to check both conditions in detail.
 
 ```
 delay_pools 1
@@ -54,7 +61,7 @@ delay_access 1 deny all
 
 ## Tuning the cache
 
-This block manages the way the cache is stored and how it reacts to the request like "does this object already exists?"
+This part manages the way the objects are stored in the cache, and how the Squid Proxy reacts to the requests like "Does this object already exists?"
 
 It works for me with the follwing settings:
 

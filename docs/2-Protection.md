@@ -2,8 +2,9 @@
 
 ## Authorization to Squid
 
-You can restrict the access to the Squid Proxy Server
-To create a password, type this. Replace [USERNAME] with your choice
+You can restrict the access to the Squid Proxy Server by creating a password.
+
+If you want to proceed in this way, please type the following commands in your shell (replace [USERNAME] with your the one of your choice):
 
 ```
 htpasswd -c /etc/squid/.passwd [USERNAME]
@@ -11,7 +12,8 @@ chown proxy:proxy /etc/squid/.passwd
 chmod 0640 /etc/squid/.passwd
 ```
 
-Once you have created the password, at the begining of the squid.conf you'll find this:
+Once you have created the password, you can put these settings the begining of the [squid.conf](https://github.com/RubioApps/RubioGuard/blob/main/squid/squid.conf):
+
 
 ```
 auth_param basic program  /usr/lib/squid/basic_ncsa_auth /etc/squid/.passwd
@@ -27,21 +29,24 @@ Remove it if you do not want to use a password to access to the Proxy Server
 
 ## Authorization to the Cache Manager
 
-If you want to use the cache manager from Squid, you might use a password. This extension of Squid Proxy server allows to collect the statistics of the server.
+If you want to use the cache manager from Squid, you might use a password. The Cache Manager is an extension of Squid Proxy Server allows to collect the statistics of the server.
+
 In order to preserve the privacy of the members of your family (do not forget this configuration is only for domestic purposes), I recommend to protect it with a password.
 
 ```
 cachemgr_passwd [PASSWORD FOR THE CACHE MANAGER] all
 ```
-For further information about the Cache Manager, please visit [Ubuntu Docs](https://manpages.ubuntu.com/manpages/trusty/man8/cachemgr.cgi.8.html)
 
+For further information about the Cache Manager, please visit [Ubuntu Docs](https://manpages.ubuntu.com/manpages/trusty/man8/cachemgr.cgi.8.html)
 
 
 ## Access Control List (ACL)
 
-Here I have defined the shortnames of the rules used by Squid. I have commented each block so you can easily understand the purpose of each one.
+I have defined the shortnames of the rules used by Squid. I have commented each block, so you can easily understand the purpose of each one.
 
-NOTICE: the term 'BUMP' refers the steps used during the process where Squid decrypt, storage in the cache and re-encrypt, the Secured connections (TLS/SSL) between the client (any device connected zt home to the proxy) and the server (any web page you want to browse).
+NOTE: 
+
+The term **BUMP** refers to the steps used during the process where Squid decrypts, stores in the cache and re-encrypts the Secured connections (TLS/SSL) between the client (any device connected to the proxy) and the remote server (any web page you want to browse).
 
 ```
 # Protocols
@@ -144,8 +149,9 @@ acl CERT_ERR ssl_error X509_V_ERR_CERT_REVOKED
 
 ## HTTP Access
 
-In this list, the order is mandatory to not to block the traffc. In fact, we authorize the own server and the domestic LAN.
-If it is confirmed, we only allow safe and secured ports with good certificates, and we reject the rest.
+In this list, the **order is mandatory** to not to block the traffc. 
+
+In fact, we authorize the own server and the domestic LAN. If the traffic commits the rules, we only allow safe and secured ports with good certificates, and we reject the rest.
 
 ```
 http_access allow localhost
@@ -164,7 +170,7 @@ http_access deny all
 
 ## ICP Access
 
-This is used to connect to other proxies. We do not want to, so I deny it except for the own server.
+This is used to connect to other proxies. As we do not want to, we deny it except for the own server.
 
 ```
 icp_access allow localhost

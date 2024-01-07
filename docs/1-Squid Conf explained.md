@@ -46,7 +46,7 @@ I have splitted this explanation in multiple blocks to better understand the con
  5. External programs
 
 
-# Peer Proxies: Privoxy as a filtering server
+## Peer Proxies: Privoxy as a filtering server
 
  1. Cache Digest options
  2. Redirect to TOR
@@ -54,7 +54,5 @@ I have splitted this explanation in multiple blocks to better understand the con
 
 ## Logging and Troubleshooting
 
-I have redacted one file per block. Please refers to the /docs
+I have redacted one file per block. Please refers to the [/docs](https://github.com/RubioApps/RubioGuard/tree/main/docs) as a Table of Contents.
 
-
- 

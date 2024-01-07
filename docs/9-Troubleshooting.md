@@ -1,7 +1,7 @@
 # Troubleshooting
 
 When connecting to a website through a Proxy Server, it would be interesting to know what is stored in the cache, what is seen for the first time, etc.
-If you want to check the logs, you can setup the format of the logfiles as it follows:
+If you want to check the logs, you can configure the format of the logfiles as it follows:
 
 
 ## Logfile format
@@ -20,7 +20,7 @@ strip_query_terms on
 
 ## Logfile content
 
-Here I decided to make "None". You can un comment the section you want to see in the logs by uncommenting the convenient line.
+Here I decided to make "None". You can uncomment the section you want to see in the logs.
 
 ```
 cache_log /var/log/squid/cache.log
