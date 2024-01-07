@@ -13,7 +13,7 @@ This configuration CAN ONLY be used for personnal purposes in a domestic network
 
 Once the setup is complete, you can use the Squid Proxy by:
 
-- Adding the EasyRSA self-signed certificate to your internet browser (chrome, Firefox, Brave, etc..)
+- Adding a Self-Signed Certificate to your internet browser (chrome, Firefox, Brave, etc..)
 - Setting your browser or PC to use **http://<your_ip_server>:3128** as the unique proxy address for all protocols.
 
 ## Requirements
