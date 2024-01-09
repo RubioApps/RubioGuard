@@ -5,7 +5,7 @@ When Squid is using the disk storage mode, it is slower but you can store bigger
 
 Let's tune it! 
 
-## Memory options
+## Memory options (mandatory)
 
 Obviously, if we are going to use the memory, we have to define the limits in terms of size.
 Hereinfater the suggested configuration:
@@ -20,7 +20,7 @@ maximum_object_size_in_memory 1024 KB
 netdb_filename stdio:/var/spool/squid/netdb.state
 ```
 
-And this for the disk:
+If you want to use the storage on disk, you have to add this:
 
 ```
 cache_replacement_policy heap LFUDA
@@ -33,7 +33,7 @@ This can be modified depending on the machine where you run the Squid Proxy Serv
 The suggested values work fine for me.
 
 
-## Pools
+## Pools (optional, highly recommended)
 
 Some services like Windows Update, Metrics or the Antivirus running on the PC clients can use a big portion of the bandwidth at home. 
 Therefore, it is interesting to drive that traffic through a pool with a restricted timeslot.
@@ -59,7 +59,7 @@ delay_access 1 allow POOL_UPDATES PEAK_PERIOD
 delay_access 1 deny all
 ```
 
-## Tuning the cache
+## Tuning the cache (optional, recommended)
 
 This part manages the way the objects are stored in the cache, and how the Squid Proxy reacts to the requests like "Does this object already exists?"
 
@@ -73,7 +73,7 @@ send_hit deny CACHE_EXCLUDE_MEDIA
 store_miss deny CACHE_EXCLUDE_MEDIA
 ```
 
-## Refresh
+## Refresh (mandatory)
 
 There is 2 ways to say to Squid when to refresh the stored objects (in the memory or the disk):
 
