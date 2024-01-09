@@ -79,7 +79,7 @@ ssl_bump bump BROWSERS
 ssl_bump splice all
 ```
 
-## Spoofing
+## Spoofing (optional)
 
 Spoofing is the term used to describe the mechanisms of alter the HTTP headers sent to the remote server.
 You can use it if you want the remote server to ignore from which webpage are you landing off (via or forwarded_for).
