@@ -30,7 +30,7 @@ url_rewrite_access allow BROWSERS
 url_rewrite_access deny all
 ```
 
-__Method 3__: Use service of ICAP Server to filter
+__Method 3__: Use service of ICAP Server to filter (optional, highly recommended)
 
 I use this method in addition to the Method 1 (NextDNS) because it allows to scan ALL THE TRAFFIC with the very efficient Antivirus ClamAV for Linux distros.
 
