@@ -62,9 +62,11 @@ http_port 3128 ssl-bump \
 ```
 
 
-## DNS
+## DNS (optional)
 
-This option is used by the Proxy to resolve the namesof the remote servers.
+This option is used by the Proxy to resolve the names of the remote servers.
+Only use if you decided to set a different DNS than the one used by the resolver of your server.
+In my case, I do not use it anymore since the machine running the Bind9 DNS and Squid Proxy is the same
 
 ```
 dns_nameservers 1.1.1.1
@@ -72,7 +74,7 @@ dns_multicast_local on
 dns_timeout 3 seconds
 ```
 
-## TCP / SSL / TLS / ICP options
+## TCP / SSL / TLS / ICP options (optional)
 
 Here we configure the options related to the secured layer
 
@@ -101,7 +103,7 @@ icp_port 0
 htcp_port 0
 ```
 
-### SSL OPTIONS
+### SSL OPTIONS (optional)
 
 These options define the way the SSL is done. 
 
@@ -112,7 +114,7 @@ sslproxy_cert_error allow all
 ```
 
 There is an optional check you can include into this block.
-By adding a "deny CERT_ERR"when the Squid Proxy server connects to a remote server that has any issue with its certificate, it will be rejected.
+By adding a "deny CERT_ERR" when the Squid Proxy server connects to a remote server that has any issue with its certificate, it will be rejected.
 
 So, the lines becomes as it follows:
 
@@ -126,7 +128,7 @@ sslproxy_cert_error allow all
 I do not use it because I trust my browser to do the job.
 As we use Squid Proxy server through an Internet Browser (Brave, Firefox or DuckDuck go), I'll let the browser to refuse the invalid certificates.
 
-### TLS OPTIONS : Custom config SSL-MITM mode
+### TLS OPTIONS : Custom config SSL-MITM mode (mandatory for vulnerability reasons)
 
 ```
 tls_outgoing_options capath=/etc/ssl/certs
