@@ -1,7 +1,8 @@
 #------------------------------------------------------------------------
 # Autoswitch node for TOR connection
 # This Python script is execute by a service running on the background
-# Please refer to the file torswitch.service in this same folder
+# Please refer to the file 
+# https://github.com/RubioApps/RubioGuard/blob/643a6c623825b7ed004894a8fd5356ba872a01cd/tor/torswitch.md
 #------------------------------------------------------------------------
 
 import requests
