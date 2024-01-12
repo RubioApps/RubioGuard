@@ -38,7 +38,7 @@ def get_current_ip():
 def renew_tor_ip():
 
 	with Controller.from_port(port = 9051) as controller:
-		controller.authenticate(password="M1l4n4@B0n1t4")
+		controller.authenticate(password="{{YOUR_PLAIN_PASSWORD")
 		controller.signal(Signal.NEWNYM)
 
 if __name__ == "__main__":
