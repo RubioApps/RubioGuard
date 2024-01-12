@@ -1,3 +1,9 @@
+#------------------------------------------------------------------------
+# Autoswitch node for TOR connection
+# This Python script is execute by a service running on the background
+# Please refer to the file torswitch.service in this same folder
+#------------------------------------------------------------------------
+
 import requests
 import time
 import logging
