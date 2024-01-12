@@ -6,6 +6,13 @@ SOCKSPolicy accept 127.0.0.1/8
 SocksPolicy accept 192.168.X.X/24
 SocksPolicy reject *
 
+# To control the TOR connection, you would need to set a password
+# You can type the following shell command:
+#
+# tor --hash-password {{YOUR_PASSWORD}}
+#
+# Paste the output of that command into the holder {{YOUR_HASHED_PASSWORD}}
+
 RunAsDaemon 1
 ControlPort 9051
 HashedControlPassword {{YOUR_HASHED_PASSWORD}}
