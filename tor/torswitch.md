@@ -3,8 +3,18 @@
 This service runs on the background and forces the TOR connection to be refreshed every 15 minute
 This can be done on Ubuntu 22.04 by creating a service managed by systemd:
 
-__Create a file__: /etc/systemd/system/torswitch.service
-__Paste the following content__:
+Before doing this, you have already created the file /etc/tor/autoswitch.py
+You'll find this python script within this folder.
+
+Please remind that all the files have to be owned by root. Then, please run the shell commands in sudo -u root mode.
+
+. Create the file: 
+
+```
+nano /etc/systemd/system/torswitch.service
+```
+
+. Paste the following content, and save:
 
 ```
 [Unit]
@@ -19,8 +29,13 @@ ExecStart=/usr/bin/python3 /etc/tor/autoswitch.py
 WantedBy=multi-user.target
 ```
 
-__Create a file__: /etc/systemd/system/torswitch.timer
-__Paste the following content__
+. Create a file: 
+
+```
+nano /etc/systemd/system/torswitch.timer
+```
+
+. Paste the following content, and save:
 
 ```
 [Unit]
@@ -33,14 +48,20 @@ Persistent=true
 [Install]
 WantedBy=timers.target
 ```
-__Enable the service__:
+. Enable the service:
 
 ```
 systemctl enable torswitch.service torswitch.timer
 ```
 
-__Start the service__:
+. Start the service:
 
 ```
 systemctl start torswitch.service torswitch.timer
 ```
+
+Now, this service will connect to the TOR service, using the autoswitch.py script, which contains the secret plain password.
+In the other hand, the TOR service contains the hashed password of the used one, which allows the connection.
+
+
+
