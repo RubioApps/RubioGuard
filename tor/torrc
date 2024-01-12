@@ -1,8 +1,10 @@
 Log notice file /var/log/tor/notice.log
 
-SOCKSPort 9050
-SOCKSPolicy accept 127.0.0.1
-SocksPolicy accept 192.168.1.0/24
+SOCKSPort 127.0.0.1:9050
+SOCKSPolicy accept 127.0.0.1/8
+# Type here your LAN IP address
+SocksPolicy accept 192.168.X.X/24
+SocksPolicy reject *
 
 RunAsDaemon 1
 ControlPort 9051
@@ -11,8 +13,7 @@ CookieAuthentication 0
 
 ExitPolicy accept *:*
 
+# The nodes are identified by the ISO 3166-1 country codes
 ExcludeExitNodes {ab},{cd},{ef}
-ExcludeNodes {pp},{qq},{rr}
-ExitNodes {xx},{yy},{zz}
 StrictNodes 1
 
